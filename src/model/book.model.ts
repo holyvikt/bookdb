@@ -3,13 +3,13 @@ import { model, Schema } from "mongoose";
 interface Book {
     id: number
     name: string
-    author: string // TODO class author
+    author: string
     publication: number
     image?: string
 }
 
 const schema = new Schema<Book>({
-    id: {type: Number, required: true},
+    id: {type: Number, required: false},
     name: {type: String, required: true},
     author: {type: String, required: true},
     publication: {type: Number, required: true},
