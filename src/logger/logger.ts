@@ -6,7 +6,7 @@ const log = logger({
     base: {
         pid: false
     },
-    timestamp: () => ` ${dayjs().format()}`
+    timestamp: () => `time":"${dayjs().format('HH:mm:ss.SSS')}"`
 })
 
 export default log

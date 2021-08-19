@@ -1,9 +1,9 @@
 const config = {
     port: 5000,
     host: 'localhost',
-    dbHost: '',
-    dbPort: '',
-    dbName: '',
+    dbUrl: 'mongodb://localhost',
+    dbPort: '27017',
+    dbName: 'bookdb',
     dbUser: '',
     dbPassword: ''
 }
