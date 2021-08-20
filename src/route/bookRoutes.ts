@@ -1,4 +1,4 @@
-import { Application, Request, Response } from 'express'
+import { Application } from 'express'
 import { getBooksHandler, getBookHandler, createBookHandler, deleteBookHandler, updateBookHandler } from '../controller/book.controller'
 import { createBookSchema, getBookSchema, updateBookSchema, deleteBookSchema } from '../schema/book.schema'
 import validateRequest from '../middleware/validator'
