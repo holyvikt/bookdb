@@ -1,7 +1,7 @@
-import { model, Schema } from "mongoose";
+import { model, ObjectId, Schema } from "mongoose";
 
 interface Book {
-    _id: string // TODO
+    _id: ObjectId
     name: string
     author: string
     publication: number
