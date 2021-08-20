@@ -13,6 +13,11 @@ export function createBook(book: Book) {
     return BookModel.create(book)
 }
 
+export async function updateBook(bookId: string, updatedBook: Book){
+    await BookModel.findByIdAndUpdate(bookId, updatedBook)
+    return BookModel.findById(bookId)
+}
+
 export function deleteBook(id: string) {
     return BookModel.findByIdAndRemove(id)
 }

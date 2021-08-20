@@ -1,7 +1,7 @@
 import { Application, Request, Response } from 'express'
-import { getBooksHandler, getBookHandler, createBookHandler, deleteBookHandler } from './controller/book.controller'
+import { getBooksHandler, getBookHandler, createBookHandler, deleteBookHandler, updateBookHandler } from './controller/book.controller'
 import { createBook } from './service/book.service'
-import bookSchema from './schemas/bookSchema'
+import bookSchema from './schema/book.schema'
 import validateRequest from './middleware/validator'
 
 export default function (app: Application) {
@@ -20,6 +20,7 @@ export default function (app: Application) {
     app.post('/api/v1/books', validateRequest(bookSchema), createBookHandler)
 
     // Update book
+    app.put('/api/v1/books/:book', validateRequest(bookSchema), updateBookHandler)
 
     // Delete book
     app.delete('/api/v1/books/:book', (req: Request, res: Response) => {
