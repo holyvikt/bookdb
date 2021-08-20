@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 
 interface Book {
-    id: number
+    id: string // TODO
     name: string
     author: string
     publication: number

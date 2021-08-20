@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import log from '../logger/logger'
 import { Book, BookModel } from '../model/book.model'
-import { getBooks, createBook } from '../service/book.service'
+import { getBooks, getBook, createBook, deleteBook } from '../service/book.service'
 
 export function getBooksHandler(req: Request, res: Response) {
     getBooks()
@@ -12,10 +12,18 @@ export function getBooksHandler(req: Request, res: Response) {
 export function createBookHandler(req: Request, res: Response) {
     createBook(req.body)
         .then((book) => res.send(book))
-        .catch((error) => res.status(409).send(error))
+        .catch((reason) => res.status(409).send(reason.message))
 }
 
-export function updateBookHandleer(req: Request, res: Response){
-    
+export function getBookHandler(req: Request, res: Response) {
+    getBook(req.params.book)
+        .then((book) => res.send(book))
+        .catch((reason) => res.send(reason.message))
+}
+
+export function deleteBookHandler(req: Request, res: Response) {
+    deleteBook(req.params.book)
+        .then(() => res.sendStatus(200))
+        .catch((reason) => res.status(409).send(reason.message))
 }
 
