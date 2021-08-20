@@ -4,7 +4,7 @@ import log from "../logger/logger";
 
 async function connect() {
     const url = `${config.dbUrl}:${config.dbPort}/${config.dbName}`
-    return mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+    return mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
         .then(() => log.info(`Connected to ${config.dbName} database`))
         .catch((error) => log.error(error, "Database connection error"))
 }

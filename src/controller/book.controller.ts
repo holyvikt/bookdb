@@ -6,24 +6,34 @@ import { getBooks, getBook, createBook, deleteBook } from '../service/book.servi
 export function getBooksHandler(req: Request, res: Response) {
     getBooks()
         .then((books) => res.send(books))
-        .catch(() => res.sendStatus(409))
+        .catch((reason) => res.status(500).send(reason.message))
 }
 
 export function createBookHandler(req: Request, res: Response) {
     createBook(req.body)
-        .then((book) => res.send(book))
-        .catch((reason) => res.status(409).send(reason.message))
+        .then((book) => res.status(201).send(book))
+        .catch((reason) => res.status(500).send(reason.message))
 }
 
 export function getBookHandler(req: Request, res: Response) {
     getBook(req.params.book)
-        .then((book) => res.send(book))
-        .catch((reason) => res.send(reason.message))
+        .then((book) => {
+            if (book)
+                res.send(book)
+            else
+                res.status(404).send('Book not found')
+        })
+        .catch((reason) => res.status(500).send(reason.message))
 }
 
 export function deleteBookHandler(req: Request, res: Response) {
     deleteBook(req.params.book)
-        .then(() => res.sendStatus(200))
-        .catch((reason) => res.status(409).send(reason.message))
+        .then((book) => {
+            if (book)
+                res.status(200).send("Book deleted")
+            else
+                res.status(404).send("Nothing to delete")
+        })
+        .catch((reason) => res.status(500).send(reason.message))
 }
 

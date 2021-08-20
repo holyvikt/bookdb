@@ -5,7 +5,7 @@ export function getBooks() {
     return BookModel.find()
 }
 
-export function getBook(id: string){
+export function getBook(id: string) {
     return BookModel.findById(id)
 }
 
@@ -13,6 +13,6 @@ export function createBook(book: Book) {
     return BookModel.create(book)
 }
 
-export function deleteBook(id: string){
-    return BookModel.findByIdAndDelete(id)
+export function deleteBook(id: string) {
+    return BookModel.findByIdAndRemove(id)
 }
