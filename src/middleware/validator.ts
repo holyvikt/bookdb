@@ -11,7 +11,7 @@ const validateRequest = (schema: Schema) =>
     (req: Request, res: Response, next: NextFunction) => {
         const validationResult = schema.validate(req.body, options)
         if (validationResult.error) {
-            res.status(400).send(validationResult.error.message)
+            res.status(400).send(validationResult.error)
         } else {
             req.body = validationResult.value
             next()
