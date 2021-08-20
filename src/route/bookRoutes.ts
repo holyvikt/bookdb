@@ -1,11 +1,9 @@
 import { Application, Request, Response } from 'express'
-import { getBooksHandler, getBookHandler, createBookHandler, deleteBookHandler, updateBookHandler } from './controller/book.controller'
-import { createBook } from './service/book.service'
-import { createBookSchema, getBookSchema, updateBookSchema, deleteBookSchema } from './schema/book.schema'
-import validateRequest from './middleware/validator'
+import { getBooksHandler, getBookHandler, createBookHandler, deleteBookHandler, updateBookHandler } from '../controller/book.controller'
+import { createBookSchema, getBookSchema, updateBookSchema, deleteBookSchema } from '../schema/book.schema'
+import validateRequest from '../middleware/validator'
 
 export default function (app: Application) {
-
     // Get books
     app.get('/api/v1/books', getBooksHandler)
 

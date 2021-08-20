@@ -1,4 +1,6 @@
-import { model, ObjectId, Schema } from "mongoose";
+import { ObjectId } from "mongodb";
+import { model, Schema } from "mongoose";
+
 
 interface Book {
     _id: ObjectId
@@ -8,14 +10,16 @@ interface Book {
     image?: string
 }
 
+// Mongoose schema
 const schema = new Schema<Book>({
-    id: {type: Number, required: false},
+    id: {type: ObjectId, required: false},
     name: {type: String, required: true},
     author: {type: String, required: true},
     publication: {type: Number, required: true},
     image: {type: String, required: false}
 })
 
+// Mongoose model
 const BookModel = model<Book>('Book', schema)
 
 export {Book, BookModel}

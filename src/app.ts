@@ -2,7 +2,7 @@ import express, { Application, Request, Response } from "express"
 import log from './logger/logger'
 import config from "./config/default";
 import connect from './database/database'
-import routes from './routes'
+import bookRoutes from './route/bookRoutes'
 
 const app: Application = express();
 
@@ -16,4 +16,4 @@ app.get('/', (req: Request, res: Response) => {
 
 connect()
 app.listen(config.port, () => log.info(`Server listening at http://${config.host}:${config.port}`))
-routes(app)
+bookRoutes(app)
