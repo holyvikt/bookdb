@@ -1,4 +1,6 @@
 import { Request, Response } from 'express'
+import path from 'path'
+import config from '../config/default'
 import log from '../logger/logger'
 import { Book, BookModel } from '../model/book.model'
 import { getBooks, getBook, createBook, deleteBook, updateBook } from '../service/book.service'
@@ -30,8 +32,8 @@ export function getBookHandler(req: Request, res: Response) {
         .catch((reason) => res.status(500).send(reason.message))
 }
 
-export function createBookHandler(req: Request, res: Response) {
-    createBook(req.body)
+export function createBookHandler(req: any, res: Response) {
+    createBook(req.body, req.file.filename)
         .then((book) => res.status(201).send(book))
         .catch((reason) => res.status(500).send(reason.message))
 }
@@ -67,5 +69,19 @@ export function deleteBookHandler(req: Request, res: Response) {
                 res.status(404).send("Nothing to delete")
         })
         .catch((reason) => res.status(500).send(reason.message))
+}
+
+export function getBookImage(req: Request, res: Response) {
+    getBook(req.params.book)
+        .then((book) => {
+            if (book) {
+                if (book.image)
+                    res.sendFile(path.resolve(`${config.storagePath}/${book.image}`))
+                else
+                    res.sendStatus(204)
+            } else {
+                res.sendStatus(404)
+            }
+        })
 }
 

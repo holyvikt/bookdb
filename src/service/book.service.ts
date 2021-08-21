@@ -20,7 +20,8 @@ export function getBook(id: string) {
  * Insert new book into DB
  * @param book book to be inserted
  */
-export function createBook(book: Book) {
+export function createBook(book: Book, image: string) {
+    book.image = image
     return BookModel.create(book)
 }
 
