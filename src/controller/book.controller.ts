@@ -18,7 +18,7 @@ export function getBooksHandler(req: Request, res: Response) {
 
 /**
  * Get book by ID
- * @param req 
+ * @param req
  * @param res 
  */
 export function getBookHandler(req: Request, res: Response) {
@@ -33,7 +33,7 @@ export function getBookHandler(req: Request, res: Response) {
 }
 
 export function createBookHandler(req: any, res: Response) {
-    createBook(req.body, req.file.filename)
+    createBook(req.body, req.file?.filename)
         .then((book) => res.status(201).send(book))
         .catch((reason) => res.status(500).send(reason.message))
 }
