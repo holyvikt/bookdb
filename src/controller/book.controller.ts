@@ -33,7 +33,7 @@ export function getBookHandler(req: Request, res: Response) {
 }
 
 export function createBookHandler(req: any, res: Response) {
-    createBook(req.body, req.file?.filename)
+    createBook(req.body, req.file?.path)
         .then((book) => res.status(201).send(book))
         .catch((reason) => res.status(500).send(reason.message))
 }
@@ -71,12 +71,17 @@ export function deleteBookHandler(req: Request, res: Response) {
         .catch((reason) => res.status(500).send(reason.message))
 }
 
+/**
+ * Get book image by book ID
+ * @param req 
+ * @param res 
+ */
 export function getBookImage(req: Request, res: Response) {
     getBook(req.params.book)
         .then((book) => {
             if (book) {
                 if (book.image)
-                    res.sendFile(path.resolve(`${config.storagePath}/${book.image}`))
+                    res.sendFile(path.resolve(`${book.image}`))
                 else
                     res.sendStatus(204)
             } else {

@@ -10,6 +10,10 @@ const options = {
     stripUnknown: true // remove unknown props
 };
 
+function deleteUploadedFile(){
+
+}
+
 /**
  * Request validation middleware
  * @param schema the scheme according to which the validation should be done
@@ -19,7 +23,9 @@ const validateRequest = (schema: Schema) =>
     (req: Request, res: Response, next: NextFunction) => {
         const validationResult = schema.validate(req, options)
         if (validationResult.error) {
-            res.status(400).send(validationResult.error.message)
+            const error = new Error(validationResult.error.message)
+            error.name = 'form-validation'
+            next(error)
         } else {
             next()
         }
