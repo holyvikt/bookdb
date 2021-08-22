@@ -1,15 +1,14 @@
 import { Book, BookModel } from "../model/book.model";
-import log from "../logger/logger";
 
 /**
- * Get all books from DB
+ * Gets all books from DB
  */
 export function getBooks() {
     return BookModel.find()
 }
 
 /**
- * Get book from DB by ID
+ * Gets book from DB by ID
  * @param id book ID
  */
 export function getBook(id: string) {
@@ -17,7 +16,7 @@ export function getBook(id: string) {
 }
 
 /**
- * Insert new book into DB
+ * Inserts new book into DB
  * @param book book to be inserted
  */
 export function createBook(book: Book, image: string) {
@@ -26,7 +25,7 @@ export function createBook(book: Book, image: string) {
 }
 
 /**
- * Update existing book in DB
+ * Updates existing book in DB
  * @param bookId book ID
  * @param updatedBook new values
  */
@@ -36,7 +35,7 @@ export async function updateBook(bookId: string, updatedBook: Book){
 }
 
 /**
- * Delete book from DB
+ * Deletes book from DB
  * @param id book ID
  */
 export function deleteBook(id: string) {

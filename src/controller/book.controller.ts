@@ -1,8 +1,5 @@
 import { Request, Response } from 'express'
 import path from 'path'
-import config from '../config/default'
-import log from '../logger/logger'
-import { Book, BookModel } from '../model/book.model'
 import { getBooks, getBook, createBook, deleteBook, updateBook } from '../service/book.service'
 
 /**

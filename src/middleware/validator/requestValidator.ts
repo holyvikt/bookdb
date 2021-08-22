@@ -1,5 +1,5 @@
 import { Request, NextFunction, Response } from 'express'
-import Joi, { Schema } from 'joi';
+import { Schema } from 'joi';
 
 /**
  * Validator options
@@ -9,10 +9,6 @@ const options = {
     allowUnknown: true, // ignore unknown props
     stripUnknown: true // remove unknown props
 };
-
-function deleteUploadedFile(){
-
-}
 
 /**
  * Request validation middleware
