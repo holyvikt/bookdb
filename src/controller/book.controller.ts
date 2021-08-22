@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import path from 'path'
 import { getBooks, getBook, createBook, deleteBook, updateBook } from '../service/book.service'
+import { deleteFile } from '../service/file.service'
 
 /**
  * Get all books
@@ -60,10 +61,13 @@ export function updateBookHandler(req: Request, res: Response) {
 export function deleteBookHandler(req: Request, res: Response) {
     deleteBook(req.params.book)
         .then((book) => {
-            if (book)
+            if (book) {
+                if(book.image)
+                    deleteFile(book.image)
                 res.status(200).send("Book deleted")
-            else
+            } else {
                 res.status(404).send("Nothing to delete")
+            }
         })
         .catch((reason) => res.status(500).send(reason.message))
 }
