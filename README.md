@@ -13,7 +13,7 @@ npm run dev
 ```
 MongoDB must be set up and running.
 
-### Compiles and minifies for production
+### Compiles
 ```
 npm run build
 ```
