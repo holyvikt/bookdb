@@ -7,7 +7,7 @@ Express.js, Typescript, MongoDB
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles and watch
 ```
 npm run dev
 ```
