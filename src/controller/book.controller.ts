@@ -4,7 +4,7 @@ import { getBooks, getBook, createBook, deleteBook, updateBook } from '../servic
 import { deleteFile } from '../service/file.service'
 
 /**
- * Get all books
+ * Returns all books
  * @param req 
  * @param res 
  */
@@ -15,7 +15,7 @@ export function getBooksHandler(req: Request, res: Response) {
 }
 
 /**
- * Get book by ID
+ * Returns book by ID
  * @param req
  * @param res 
  */
@@ -30,6 +30,11 @@ export function getBookHandler(req: Request, res: Response) {
         .catch((reason) => res.status(500).send(reason.message))
 }
 
+/**
+ * Creates new book
+ * @param req 
+ * @param res 
+ */
 export function createBookHandler(req: any, res: Response) {
     createBook(req.body, req.file?.path as string)
         .then((book) => res.status(201).send(book))
@@ -37,7 +42,7 @@ export function createBookHandler(req: any, res: Response) {
 }
 
 /**
- * Update book by ID
+ * Updates book by ID
  * @param req 
  * @param res 
  */
@@ -54,8 +59,7 @@ export function updateBookHandler(req: Request, res: Response) {
 }
 
 /**
- * Delete book by ID
- * @param req 
+ * Deletes req 
  * @param res 
  */
 export function deleteBookHandler(req: Request, res: Response) {
@@ -73,7 +77,7 @@ export function deleteBookHandler(req: Request, res: Response) {
 }
 
 /**
- * Get book image by book ID
+ * Returns book image by book ID
  * @param req 
  * @param res 
  */
