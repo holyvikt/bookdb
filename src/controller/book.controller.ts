@@ -31,7 +31,7 @@ export function getBookHandler(req: Request, res: Response) {
 }
 
 export function createBookHandler(req: any, res: Response) {
-    createBook(req.body, req.file?.path)
+    createBook(req.body, req.file?.path as string)
         .then((book) => res.status(201).send(book))
         .catch((reason) => res.status(500).send(reason.message))
 }
@@ -42,7 +42,7 @@ export function createBookHandler(req: any, res: Response) {
  * @param res 
  */
 export function updateBookHandler(req: Request, res: Response) {
-    updateBook(req.params.book, req.body)
+    updateBook(req.params.book, req.body, req.file?.path as string)
         .then((book) => {
             if (book)
                 res.send(book)

@@ -21,7 +21,7 @@ router.get('/:book', validateRequest(getBookSchema), getBookHandler)
 router.post('/', [uploadImageMulter.single('file'), validateRequest(createBookSchema)], createBookHandler)
 
 // Update book
-router.put('/:book', validateRequest(updateBookSchema), updateBookHandler)
+router.put('/:book', [uploadImageMulter.single('file'), validateRequest(updateBookSchema)], updateBookHandler)
 
 // Delete book
 router.delete('/:book', validateRequest(deleteBookSchema), deleteBookHandler)
