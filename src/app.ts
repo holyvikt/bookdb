@@ -1,16 +1,17 @@
-import express, { Application, Request, Response } from "express"
+import express, { Application } from "express"
 import log from './logger/logger'
 import config from "./config/default";
 import connect from './database/database'
-import bookRoutes from './routes/book.routes'
+import bookRouter from './routes/book.routes'
 
 const cors = require('cors')
 const app: Application = express();
 
 app.use(cors())
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({ extended: false }))
 
 connect()
 app.listen(config.port, () => log.info(`Server listening at http://${config.host}:${config.port}`))
-bookRoutes(app)
+
+app.use('/api/v1/books', bookRouter)
